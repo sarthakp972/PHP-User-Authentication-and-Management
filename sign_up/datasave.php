@@ -1,6 +1,6 @@
 <?php
-echo "Database_file";
-class Database{
+echo "Database_file 123";
+ class Database{
     private $db_host="localhost";
     private $db_user="root";
     private $db_pass="";
@@ -18,6 +18,7 @@ class Database{
         {
              $this->mysqli=new mysqli($this->db_host,$this->db_user,$this->db_pass,$this->db_name);
              $this->conn=true;
+             echo "connection ban gaya";
            if($this->mysqli->connect_error)
                 {
                    array_push($this->result,$this->mysqli->connect_error);
@@ -36,6 +37,8 @@ class Database{
             $table_columns=implode(',',array_keys($params));
             $table_values=implode("' , '",$params);
         echo $sql="INSERT INTO $table ($table_columns) VALUES ('$table_values')" ;
+        echo "<br>";
+        echo "data save ho gya hai";
 
         if($this->mysqli->query($sql)){
             array_push($this->result,$this->mysqli->insert_id);
@@ -89,11 +92,13 @@ class Database{
 
     ?>
     
-<?php
+  <?php
 
-$obj = new Database();
+
  
    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $obj = new Database();
+    echo "object ban gaya";
     
       $name = isset($_POST["input1"]) ? $_POST["input1"] : "";
 
@@ -131,4 +136,4 @@ if ($inserted) {
    mysqli_close($conn);
 ?>   
 
-  
+   

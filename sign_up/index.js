@@ -1,9 +1,6 @@
-
-
-
-
 function nextPhase(){
-    let name1 = $("#name").val();
+    console.log("nextphase");
+let name1 = $("#name").val();
 let email = $("#email").val();
 let phone = $("#phone").val();
 
@@ -11,17 +8,22 @@ let index1=email.indexOf(".");
 let index2=email.indexOf("@");
 
 
+if(name1.length<=3){
+alert("please Enter a valid name");
+}
 
+else if( index1==-1||index2==-1){
+    alert("please Enter a valid email");   
 
- if(phone.length<10||phone.length>10 || name1.length<=3 || index1==-1||index2==-1){
-//   console.log("index1==-1||index2==-1",index1,index2);
+}
+
+ else if(phone.length<10||phone.length>10 ){
+
 //   console.log("phone.length==10",phone.length);
 //   console.log("name1.length>=3",name1.length);
-
-
-  alert("error here");
-
+  alert("please enter 10 digit phone number");
  }
+
    else{
     
 
