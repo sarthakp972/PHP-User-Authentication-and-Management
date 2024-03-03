@@ -6,6 +6,7 @@
     <title>SignUP Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="profile.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -98,6 +99,24 @@
 
                             <!-- end 2nd page -->
 
+                            <!-- 3rd page start -->
+                      
+   <div id="phase3">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="circle-frame">
+        <img src="img\profile_photo1.jpeg" alt="Your Image">
+        </div>
+        <div>
+            <p id="your_name"></p>
+        </div>
+        <div>
+            <a href="hello.php">Continue with your profile</a>
+        </div>
+    </div>
+</div>
+                      <!-- 3rd page end -->
+
+
                          </div>
                 </div>
             </div>
@@ -106,6 +125,7 @@
 
         $("#phase1").show();
         $("#phase2").hide();
+        $("#phase3").hide();
         
 // ////////////////////////////////////////////
 // var name1 = $("#name").val();
@@ -147,6 +167,7 @@ else if( index1==-1||index2==-1){
 
     $("#phase1").hide();
     $("#phase2").show();
+    $("#phase3").hide();
    }
 }//function end
 
@@ -182,24 +203,49 @@ function submit(){
 
        
         else{
+
 //////////////////////////////////////////////////////////////////
-console.log("submit else");
+console.log(name1);
+console.log(email);
+console.log(phone);
+console.log(gender);
+console.log(password);
    $.ajax({
     url: "datasave.php",
     type: "POST",
     data: { input1:name1,input2:email,input3:phone,input4:gender,input5:password},
-    // console.log(input1);
+
     success: function(response) {
+      console.log(response)
+    
+        alert("Your form is submitted")
         alert("Thank you!");
+
+       ///////////////////////////////////////////////////////////////// for phase3
+       alert(response);
+       $(document).ready(function() {
+        // Assuming you have a variable named 'your_name'
+        var your_name = name1;
+        
+        // Use .text() method to set text content of <p> tag
+        $("#your_name").text(your_name);
+    });
+    $("#phase1").hide();
+    $("#phase3").show();
+    $("#phase2").hide();
+
+///////////////////////////////////////////////// for phase3 end
+
     },
     error: function(xhr, status, error) {
         alert("Error: " + status + "\nMessage: " + error);
+        console.log("error");
     }
 });
 
 ////////////////////////////////////////////////////////////////
 
-            alert("Your form is submitted")
+          
         }
 }
 </script>
